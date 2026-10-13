@@ -4,21 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Рай Рибака — рибальський набір</title>
+    <title>Рибальський набір</title>
 
     <meta
       name="description"
-      content="Рай Рибака — рибальські набори, вудилища, котушки та аксесуари. Обирайте спорядження для своєї наступної риболовлі."
+      content="Риболовний набір. Фото, комплектація, ціна та замовлення з доставкою."
     />
 
     <link rel="stylesheet" href="./styles.css" />
-    <script src="./js/script.js" defer></script>
+    <script src="./script.js" defer></script>
   </head>
 
   <body>
+    <!-- Шапка -->
     <header class="header">
       <div class="container">
-        <a class="logo" href="./index.html">Рай Рибака</a>
+        <a class="logo" href="./index.html">Риболовний набір</a>
 
         <nav aria-label="Основна навігація">
           <ul class="nav-list">
@@ -29,35 +30,40 @@
         </nav>
       </div>
     </header>
+
     <main>
       <!-- Головний блок -->
       <section class="hero" aria-labelledby="product-title">
         <div class="container">
           <p class="hero-label">Все для риболовлі в одному наборі</p>
 
-          <h1 class="hero-title" id="product-title">Риболовний набір 30 в 1</h1>
+          <!-- Заміни назву та ціни на справжні -->
+          <h1 class="hero-title" id="product-title">
+            Риболовний набір 16 в 1
+          </h1>
 
           <img
             class="hero-image"
-            src="./images/fishing-set.jpg"
+            src="./images/nabir.webp"
             alt="Риболовний набір із вудилищами, котушками та аксесуарами"
             width="480"
             height="480"
+            fetchpriority="high"
           />
 
           <div class="price">
             <div class="price-item">
               <p>Звичайна ціна</p>
-              <p class="price-old"><s>3 000 грн</s></p>
+              <p class="price-old"><s>3 020 грн</s></p>
             </div>
 
             <div class="price-item">
               <p>Ціна зі знижкою</p>
-              <p class="price-new">1 990 грн</p>
+              <p class="price-new">1 510 грн</p>
             </div>
           </div>
 
-          <!-- Дату завершення акції пізніше задамо в JavaScript -->
+          <!-- Відлік підключимо через JS до дати завершення акції -->
           <div class="countdown">
             <p class="countdown-title">До кінця акції залишилося:</p>
 
@@ -83,51 +89,28 @@
             </div>
           </div>
 
-          <a class="order-button" href="#order">Замовити зі знижкою</a>
+          <a class="order-button" href="#order">
+            Замовити зі знижкою
+          </a>
         </div>
       </section>
 
-      <!-- Фотографії набору -->
-      <section class="gallery" aria-labelledby="gallery-title">
+      <!-- Карусель і комплектація в одному блоці -->
+      <section
+        class="gallery"
+        id="equipment"
+        aria-labelledby="gallery-title"
+      >
         <div class="container">
           <h2 class="section-title" id="gallery-title">
-            Розглянь набір ближче
+            Що входить у набір
           </h2>
 
           <div class="carousel" aria-label="Фотографії набору">
             <ul class="carousel-list" id="product-slides">
-              <li class="carousel-slide">
-                <img
-                  src="./images/set-1.jpg"
-                  alt="Загальний вигляд риболовного набору"
-                  width="480"
-                  height="480"
-                  loading="lazy"
-                />
-              </li>
-
-              <li class="carousel-slide" hidden>
-                <img
-                  src="./images/set-2.jpg"
-                  alt="Вудилища та котушки з набору"
-                  width="480"
-                  height="480"
-                  loading="lazy"
-                />
-              </li>
-
-              <li class="carousel-slide" hidden>
-                <img
-                  src="./images/set-3.jpg"
-                  alt="Аксесуари з риболовного набору"
-                  width="480"
-                  height="480"
-                  loading="lazy"
-                />
-              </li>
+              <!-- Фотографії та їх порядок задаються у script.js -->
             </ul>
 
-            <!-- Увімкнемо кнопки після підключення каруселі через JS -->
             <div class="carousel-controls">
               <button
                 class="carousel-prev"
@@ -140,7 +123,9 @@
               </button>
 
               <p class="carousel-counter" aria-live="polite">
-                <span id="current-slide">1</span> / 3
+                <span id="current-slide">0</span>
+                /
+                <span id="total-slides">0</span>
               </p>
 
               <button
@@ -153,13 +138,49 @@
                 Далі
               </button>
             </div>
+
+            <p class="carousel-caption" id="slide-caption"></p>
           </div>
 
-          <a class="order-button" href="#order">Замовити набір</a>
+          <h3 class="equipment-subtitle">Повна комплектація</h3>
+
+          <!-- Уточни склад і кількість предметів перед публікацією -->
+          <ul class="equipment-list">
+  <li>
+    Телескопічний спінінг Apollo, довжина 2,1 м,
+    тест 40–80 г — 2 шт.
+  </li>
+  <li>Котушка розміру 2000 з ліскою — 2 шт.</li>
+  <li>Чохол на 2 відділення, довжина 0,8 м — 1 шт.</li>
+  <li>Підставка для спінінга, довжина 0,9 м — 2 шт.</li>
+  <li>Садок із 3 кільцями для виловленої риби — 1 шт.</li>
+  <li>Прикормка для риби, 1 кг — 1 шт.</li>
+  <li>Снасть для риболовлі «Карась» — 1 шт.</li>
+  <li>Снасть для риболовлі «Короп з відводами» — 1 шт.</li>
+  <li>Бубонець із прищіпкою — 2 шт.</li>
+  <li>Пінопластова наживка «Пуфік» — 2 шт.</li>
+  <li>Набір «Свердло, шило, протяжка» — 1 шт.</li>
+  <li>Набір рибальських поплавків — 1 шт.</li>
+  <li>Гачки Kamalsy — 1 шт.</li>
+  <li>Набір стопорів для ліски — 1 шт.</li>
+  <li>Світлячки для нічної риболовлі — 1 шт.</li>
+  <li>Набір грузил — 1 шт.</li>
+  </li>
+</ul>
+
+<p class="equipment-note">
+  Доступні варіанти довжини спінінгів від 2,1 до 4,5 м.
+  Бажану довжину та ціну відповідного набору уточнюйте
+  під час замовлення.
+</p>
+
+          <a class="order-button" href="#order">
+            Замовити комплект
+          </a>
         </div>
       </section>
 
-      <!-- Опис і переваги -->
+      <!-- Переваги -->
       <section class="benefits" aria-labelledby="benefits-title">
         <div class="container">
           <h2 class="section-title" id="benefits-title">
@@ -167,8 +188,9 @@
           </h2>
 
           <p>
-            Набір об’єднує вудилища, котушки та аксесуари. Не потрібно підбирати
-            кожну річ окремо.
+            Вудочка, котушка та аксесуари в одному наборі.
+            Переглянь фото й комплектацію та обери спорядження
+            для своєї наступної риболовлі.
           </p>
 
           <ul class="benefits-list">
@@ -183,8 +205,8 @@
             </li>
 
             <li class="benefits-item">
-              <h3>Зрозумілий вибір</h3>
-              <p>Переглянь повну комплектацію перед замовленням.</p>
+              <h3>Зрозуміла комплектація</h3>
+              <p>Фото та перелік допоможуть розглянути вміст набору.</p>
             </li>
           </ul>
 
@@ -192,78 +214,32 @@
         </div>
       </section>
 
-      <!-- Комплектація: заміни на справжній список -->
-      <section
-        class="equipment"
-        id="equipment"
-        aria-labelledby="equipment-title"
-      >
-        <div class="container">
-          <h2 class="section-title" id="equipment-title">Що входить у набір</h2>
-
-          <ul class="equipment-list">
-            <li>Вудилища — 2 шт.</li>
-            <li>Котушки — 2 шт.</li>
-            <li>Жилка — 2 шт.</li>
-            <li>Підставки під вудилища — 2 шт.</li>
-            <li>Риболовні оснащення — 6 шт.</li>
-            <li>Сигналізатори кльову — 2 шт.</li>
-            <li>Набір приманок — 1 комплект.</li>
-            <li>Чохол для спорядження — 1 шт.</li>
-          </ul>
-
-          <a class="order-button" href="#order">Замовити комплект</a>
-        </div>
-      </section>
-
-      <!-- Додаткові товари -->
+      <!-- Додаткові товари: назви та ціни поки приклади -->
       <section class="extras" aria-labelledby="extras-title">
         <div class="container">
           <h2 class="section-title" id="extras-title">
             Доповни своє замовлення
           </h2>
 
-          <p>Додаткові товари не входять у ціну набору.</p>
+          <p>
+            Додай підсак або додаткову прикормку до свого набору.
+            Ці товари оплачуються окремо від набору.
+          </p>
 
           <ul class="extras-list">
-            <li class="extras-item">
+
+             <li class="extras-item">
               <article>
                 <img
-                  src="./images/extra-bait.jpg"
-                  alt="Додаткова прикормка"
+                  src="./images/pidsak.webp"
+                  alt="Підсак"
                   width="320"
                   height="320"
                   loading="lazy"
                 />
 
-                <h3>Прикормка</h3>
-                <p>150 грн</p>
-
-                <label>
-                  <input
-                    type="checkbox"
-                    name="extras"
-                    value="bait"
-                    data-price="150"
-                    form="order-form"
-                  />
-                  Додати до замовлення
-                </label>
-              </article>
-            </li>
-
-            <li class="extras-item">
-              <article>
-                <img
-                  src="./images/extra-net.jpg"
-                  alt="Додатковий рибальський садок"
-                  width="320"
-                  height="320"
-                  loading="lazy"
-                />
-
-                <h3>Рибальський садок</h3>
-                <p>300 грн</p>
+                <h3>Підсак</h3>
+                <p>255 грн</p>
 
                 <label>
                   <input
@@ -277,16 +253,51 @@
                 </label>
               </article>
             </li>
+
+            <li class="extras-item">
+              <article>
+                <img
+                  src="./images/korm.webp"
+                  alt="Додаткова прикормка"
+                  width="320"
+                  height="320"
+                  loading="lazy"
+                />
+
+                <h3>Додаткова прикормка</h3>
+                <p>65 грн</p>
+
+                <label>
+                  <input
+                    type="checkbox"
+                    name="extras"
+                    value="bait"
+                    data-price="150"
+                    form="order-form"
+                  />
+                  Додати до замовлення
+                </label>
+              </article>
+            </li>
+           
           </ul>
 
-          <a class="order-button" href="#order">Перейти до замовлення</a>
+          <a class="order-button" href="#order">
+            Перейти до замовлення
+          </a>
         </div>
       </section>
 
-      <!-- Доставка й оплата: уточни умови перед публікацією -->
-      <section class="delivery" id="delivery" aria-labelledby="delivery-title">
+      <!-- Доставка: уточни умови перед публікацією -->
+      <section
+        class="delivery"
+        id="delivery"
+        aria-labelledby="delivery-title"
+      >
         <div class="container">
-          <h2 class="section-title" id="delivery-title">Як отримати набір</h2>
+          <h2 class="section-title" id="delivery-title">
+            Як отримати набір
+          </h2>
 
           <ol class="delivery-list">
             <li>
@@ -306,9 +317,13 @@
           </ol>
 
           <p>Вартість доставки — за тарифами перевізника.</p>
-          <p>Спосіб оплати уточнюється під час підтвердження замовлення.</p>
+          <p>
+            Спосіб оплати уточнюється під час підтвердження замовлення.
+          </p>
 
-          <a class="order-button" href="#order">Оформити замовлення</a>
+          <a class="order-button" href="#order">
+            Оформити замовлення
+          </a>
         </div>
       </section>
 
@@ -317,10 +332,12 @@
         <div class="container">
           <h2 class="section-title" id="order-title">Замовити набір</h2>
 
-          <p>Риболовний набір 30 в 1 — <strong>1 990 грн</strong></p>
+          <p>
+            Риболовний набір 16 в 1 — <strong>1 510 грн</strong>
+          </p>
           <p>Обрані додаткові товари оплачуються окремо.</p>
 
-          <!-- Надсилання заявок підключимо окремо -->
+          <!-- Надсилання заявок ще потрібно підключити -->
           <form class="order-form" id="order-form" method="post">
             <div class="form-field">
               <label for="customer-name">Ім’я та прізвище *</label>
@@ -347,7 +364,9 @@
             </div>
 
             <div class="form-field">
-              <label for="customer-city">Місто або населений пункт *</label>
+              <label for="customer-city">
+                Місто або населений пункт *
+              </label>
               <input
                 id="customer-city"
                 name="city"
@@ -381,7 +400,9 @@
             </div>
 
             <div class="form-field">
-              <label for="customer-comment">Коментар до замовлення</label>
+              <label for="customer-comment">
+                Коментар до замовлення
+              </label>
               <textarea
                 id="customer-comment"
                 name="comment"
@@ -390,14 +411,7 @@
               ></textarea>
             </div>
 
-            <label class="form-consent">
-              <input type="checkbox" name="privacy_consent" required />
-              Погоджуюся з обробкою моїх даних для оформлення замовлення
-              відповідно до
-              <a href="./privacy.html">політики конфіденційності</a>.
-            </label>
-
-            <!-- Приберемо disabled після підключення надсилання заявок -->
+            <!-- Увімкнемо після підключення отримання заявок -->
             <button class="order-button" type="submit" disabled>
               Підтвердити замовлення
             </button>
@@ -407,20 +421,37 @@
         </div>
       </section>
     </main>
+
+    <!-- Підвал -->
     <footer class="footer">
       <div class="container">
         <a class="logo" href="./index.html">Рай Рибака</a>
 
         <p>Рибальські набори та аксесуари</p>
 
-        <!-- Заміни номер у href та в тексті на справжній -->
+        <!-- Заміни номер на справжній -->
         <a href="tel:+380000000000">+380 (00) 000-00-00</a>
 
-        <p>
-          <a href="./privacy.html">Політика конфіденційності</a>
-        </p>
+       <p>
+  <a
+    href="https://prom.ua/ua/privacy-policy"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Політика конфіденційності
+  </a>
+</p>
 
-        <p>© 2026 Рай Рибака</p>
+<p>
+  <a
+    href="https://rai-rybaka.com.ua/ua/return_policy"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    Повернення та обмін
+  </a>
+</p>
+
       </div>
     </footer>
   </body>
