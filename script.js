@@ -169,6 +169,7 @@ if (orderForm) {
                 "Ми скоро з вами зв'яжемося.";
 
             orderForm.reset();
+            updateOrderTotal();
         } catch (error) {
             formStatus.textContent =
                 "❌ Не вдалося надіслати замовлення. " +
@@ -270,3 +271,67 @@ if (reviewsList) {
 
     updateControls();
 }
+
+
+/* Автоматичний підрахунок замовлення */
+
+const BASE_PRICE = 1510;
+
+const extraPrices = {
+    net: 255,
+    bait: 65
+};
+
+const extrasCheckboxes = document.querySelectorAll(
+    'input[name="extras"]'
+);
+
+const orderTotalElement = document.querySelector("#order-total");
+const selectedExtrasElement = document.querySelector("#selected-extras");
+
+function formatPrice(price) {
+    return price.toLocaleString("uk-UA") + " грн";
+}
+
+function updateOrderTotal() {
+    if (!orderTotalElement || !selectedExtrasElement) {
+        return;
+    }
+
+    let total = BASE_PRICE;
+
+    selectedExtrasElement.replaceChildren();
+
+    extrasCheckboxes.forEach((checkbox) => {
+        if (!checkbox.checked) return;
+
+        const price = extraPrices[checkbox.value];
+
+        if (price === undefined) return;
+
+        total += price;
+
+        const row = document.createElement("div");
+        row.className = "summary-row";
+
+        const name = document.createElement("span");
+        name.textContent = checkbox.value === "net"
+            ? "Підсак"
+            : "Додаткова прикормка";
+
+        const priceElement = document.createElement("span");
+        priceElement.textContent = "+ " + formatPrice(price);
+
+        row.append(name, priceElement);
+        selectedExtrasElement.append(row);
+    });
+
+    orderTotalElement.textContent = formatPrice(total);
+}
+
+extrasCheckboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", updateOrderTotal);
+});
+
+updateOrderTotal();
+
