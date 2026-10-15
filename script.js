@@ -116,8 +116,7 @@ if (carousel) {
 /* Надсилання замовлення в Telegram */
 
 
-const WORKER_URL =
-    "https://rai-rybaka-orders.oxanamoisiuk7.workers.dev/";
+const WORKER_URL = "/api/order";
 
 
 const orderForm = document.querySelector("#order-form");
