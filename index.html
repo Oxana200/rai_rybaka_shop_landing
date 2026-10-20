@@ -410,78 +410,84 @@
             <p class="summary-note">Вартість доставки оплачується окремо.</p>
           </div>
 
-          <form class="order-form" id="order-form" method="post">
-            <div class="form-field">
-              <label for="customer-name">Ім’я та прізвище *</label>
-              <input
-                id="customer-name"
-                name="name"
-                type="text"
-                autocomplete="name"
-                placeholder="Вкажи ім’я та прізвище"
-                required
-              />
-            </div>
+          
+<form class="order-form" id="order-form" method="post">
+  <div class="form-field">
+    <label for="customer-name">Ім’я та прізвище *</label>
+    <input
+      id="customer-name"
+      name="name"
+      type="text"
+      autocomplete="name"
+      placeholder="Вкажи ім’я та прізвище"
+      required
+    />
+  </div>
 
-            <div class="form-field">
-              <label for="customer-phone">Номер телефону *</label>
-              <input
-                id="customer-phone"
-                name="phone"
-                type="tel"
-                autocomplete="tel"
-                placeholder="+380"
-                required
-              />
-            </div>
+  <div class="form-field">
+    <label for="customer-phone">Номер телефону *</label>
+    <input
+      id="customer-phone"
+      name="phone"
+      type="tel"
+      autocomplete="tel"
+      placeholder="+380"
+      required
+    />
+  </div>
 
-            <div class="form-field">
-              <label for="customer-city"> Місто або населений пункт </label>
-              <input
-                id="customer-city"
-                name="city"
-                type="text"
-                autocomplete="address-level2"
-                placeholder="Наприклад, Київ"
-              />
-            </div>
+  <div class="form-field">
+    <label for="customer-city">Місто або населений пункт</label>
+    <input
+      id="customer-city"
+      name="city"
+      type="text"
+      autocomplete="address-level2"
+      placeholder="Наприклад, Київ"
+    />
+  </div>
 
-            <div class="form-field">
-              <label for="delivery-type">Спосіб доставки</label>
-              <select id="delivery-type" name="delivery_type">
-                <option value="">Обери спосіб доставки</option>
-                <option value="branch">Відділення Нової пошти</option>
-                <option value="courier">Кур’єрська доставка</option>
-              </select>
-            </div>
+  <div class="form-field">
+    <label for="delivery-type">Спосіб доставки</label>
+    <select id="delivery-type" name="delivery_type">
+      <option value="" selected>Обери спосіб доставки</option>
+      <option value="branch">Відділення Нової пошти</option>
+      <option value="courier">Кур’єрська доставка</option>
+      <option value="meest">Meest Пошта</option>
+      <option value="rozetka">Точка видачі ROZETKA</option>
+      <option value="ukrposhta">Укрпошта</option>
+    </select>
+  </div>
 
-            <div class="form-field">
-              <label for="delivery-address">
-                Номер відділення або адреса доставки
-              </label>
-              <input
-                id="delivery-address"
-                name="delivery_address"
-                type="text"
-                placeholder="Відділення № або вулиця, будинок, квартира"
-              />
-            </div>
+  <div class="form-field">
+    <label for="delivery-address">
+      Номер відділення або адреса доставки
+    </label>
+    <input
+      id="delivery-address"
+      name="delivery_address"
+      type="text"
+      placeholder="Відділення № або вулиця, будинок, квартира"
+    />
+  </div>
 
-            <div class="form-field">
-              <label for="customer-comment"> Коментар до замовлення </label>
-              <textarea
-                id="customer-comment"
-                name="comment"
-                rows="3"
-                placeholder="За потреби залиш коментар"
-              ></textarea>
-            </div>
-            <button class="order-button" type="submit">
-              Підтвердити замовлення
-            </button>
+  <div class="form-field">
+    <label for="customer-comment">Коментар до замовлення</label>
+    <textarea
+      id="customer-comment"
+      name="comment"
+      rows="3"
+      placeholder="За потреби залиш коментар"
+    ></textarea>
+  </div>
 
-            <p class="form-status" id="form-status" role="status"></p>
-          </form>
+  <button class="order-button" type="submit">
+    Підтвердити замовлення
+  </button>
+
+  <p class="form-status" id="form-status" role="status"></p>
+</form>
+
         </div>
       </section>
     </main>

@@ -1,11 +1,20 @@
 
+
 const prices = {
     kit: 1510,
     net: 255,
     bait: 65
 };
 
-// Перевірка роботи API через браузер
+const deliveryNames = {
+    branch: "Відділення Нової пошти",
+    courier: "Кур'єрська доставка",
+    meest: "Meest Пошта",
+    rozetka: "Точка видачі ROZETKA",
+    ukrposhta: "Укрпошта"
+};
+
+// Перевірка роботи API
 export function onRequestGet() {
     return Response.json(
         { status: "API працює" },
@@ -32,6 +41,7 @@ export async function onRequestPost({ request, env }) {
             return reply({ error: "Invalid content type" }, 415);
         }
 
+        // Отримання даних замовлення
         const body = await request.text();
 
         if (body.length > 10000) {
@@ -58,24 +68,36 @@ export async function onRequestPost({ request, env }) {
         const city = clean(order.city);
         const address = clean(order.delivery_address);
         const comment = clean(order.comment, 500);
-        const delivery = order.delivery_type;
+        const delivery = clean(order.delivery_type, 30);
 
+        // Обов'язкові тільки ім'я та телефон
         if (
             !name ||
-            !city ||
-            !address ||
-            !/^\+?[0-9()\s-]{9,20}$/.test(phone) ||
-            !["branch", "courier"].includes(delivery) ||
-            !Array.isArray(order.extras) ||
-            order.extras.some(
+            !/^\+?[0-9()\s-]{9,20}$/.test(phone)
+        ) {
+            return reply({ error: "Invalid name or phone" }, 400);
+        }
+
+        // Доставка необов'язкова, але значення перевіряємо
+        if (delivery && !deliveryNames[delivery]) {
+            return reply({ error: "Invalid delivery type" }, 400);
+        }
+
+        // Перевірка додаткових товарів
+        const selectedExtras = order.extras ?? [];
+
+        if (
+            !Array.isArray(selectedExtras) ||
+            selectedExtras.some(
                 item => !["net", "bait"].includes(item)
             )
         ) {
-            return reply({ error: "Invalid order data" }, 400);
+            return reply({ error: "Invalid extras" }, 400);
         }
 
-        const extras = [...new Set(order.extras)];
+        const extras = [...new Set(selectedExtras)];
 
+        // Розрахунок вартості
         const total =
             prices.kit +
             extras.reduce(
@@ -83,17 +105,15 @@ export async function onRequestPost({ request, env }) {
                 0
             );
 
+        // Повідомлення для Telegram
         const message = [
             "🎣 НОВЕ ЗАМОВЛЕННЯ — РАЙ РИБАКА",
             "",
             `👤 Покупець: ${name}`,
             `📞 Телефон: ${phone}`,
-            `📍 Місто: ${city}`,
-            `🚚 Доставка: ${delivery === "branch"
-                ? "Нова пошта"
-                : "Кур'єр"
-            }`,
-            `📦 Адреса / відділення: ${address}`,
+            `📍 Місто: ${city || "Не вказано"}`,
+            `🚚 Доставка: ${deliveryNames[delivery] || "Не обрано"}`,
+            `📦 Адреса / відділення: ${address || "Не вказано"}`,
             "",
             `🎣 Риболовний набір 16 в 1 — ${prices.kit} грн`,
             ...extras.map(item =>
@@ -106,13 +126,9 @@ export async function onRequestPost({ request, env }) {
             comment ? `💬 Коментар: ${comment}` : ""
         ].filter(Boolean).join("\n");
 
-        const token = String(
-            env.TELEGRAM_BOT_TOKEN
-        ).trim();
-
-        const chatId = String(
-            env.TELEGRAM_CHAT_ID
-        ).trim();
+        // Telegram
+        const token = String(env.TELEGRAM_BOT_TOKEN).trim();
+        const chatId = String(env.TELEGRAM_CHAT_ID).trim();
 
         if (!/^\d+:[A-Za-z0-9_-]+$/.test(token)) {
             console.error("Invalid Telegram token format");
@@ -150,18 +166,10 @@ export async function onRequestPost({ request, env }) {
             return reply({ error: "Delivery failed" }, 502);
         }
 
-        return reply({
-            success: true,
-            total
-        });
+        return reply({ success: true, total });
 
     } catch (error) {
-        console.error(
-            "Order processing error:",
-            error instanceof SyntaxError
-                ? "Invalid JSON"
-                : "Processing or network error"
-        );
+        console.error("Order processing error:", error?.name);
 
         return reply(
             { error: "Could not process order" },
