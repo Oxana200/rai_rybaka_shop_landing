@@ -741,3 +741,178 @@ input[type="checkbox"] {
     font-size: 15px;
     line-height: 1.6;
 }
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 48px;
+    height: 48px;
+    border: none;
+    border-radius: 50%;
+    background: #237a43;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 9999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.scroll-to-top.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+    background: #195c32;
+}
+
+@media (max-width: 600px) {
+    .scroll-to-top {
+        bottom: 20px;
+        right: 15px;
+        width: 44px;
+        height: 44px;
+    }
+}
+
+/* Бургер-меню */
+.burger-button {
+    display: none;
+    width: 44px;
+    height: 44px;
+    padding: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    z-index: 1001;
+}
+
+.burger-button span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: #237a43;
+    border-radius: 3px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .burger-button {
+        display: flex;
+    }
+
+    .header-nav {
+        display: none;
+        width: 100%;
+        order: 3;
+    }
+
+    .header-nav.open {
+        display: block;
+    }
+
+    .header-nav .nav-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px 0;
+        margin: 0;
+    }
+
+    .header-nav .nav-list li {
+        width: 100%;
+        list-style: none;
+    }
+
+    .header-nav .nav-list a {
+        display: block;
+        padding: 14px 10px;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    /* Анімація кнопки в хрестик */
+    .burger-button.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .burger-button.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-button.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .header .logo {
+        margin-right: auto;
+    }
+
+    .burger-button {
+        display: flex;
+        margin-left: auto;
+        flex-shrink: 0;
+        position: relative;
+        right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .header .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .header .logo {
+        margin: 0;
+    }
+
+    .burger-button {
+        display: flex;
+        margin-left: auto;
+        flex-shrink: 0;
+    }
+
+    .header-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        z-index: 1000;
+    }
+
+    .header {
+        position: relative;
+    }
+}

@@ -6,6 +6,8 @@
 
     <title>Рибальський набір</title>
 
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
     <meta
       name="description"
       content="Риболовний набір. Фото, комплектація, ціна та замовлення з доставкою."
@@ -20,7 +22,20 @@
       <div class="container">
         <a class="logo" href="./index.html">Риболовний набір</a>
 
-        <nav aria-label="Основна навігація">
+        <button
+          class="burger-button"
+          id="burger-button"
+          type="button"
+          aria-label="Відкрити меню"
+          aria-expanded="false"
+          aria-controls="mobile-nav"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="header-nav" id="mobile-nav" aria-label="Основна навігація">
           <ul class="nav-list">
             <li><a href="#equipment">Комплектація</a></li>
             <li><a href="#delivery">Доставка</a></li>
@@ -197,7 +212,7 @@
             Відгуки покупців набору 16 в 1
           </h2>
 
-          <p class="reviews-intro">Відгуки покупців із Prom.ua</p>
+          <p class="reviews-intro">Відгуки покупців</p>
 
           <div class="reviews-carousel">
             <div class="reviews-list" id="reviews-list">
@@ -278,7 +293,7 @@
             target="_blank"
             rel="noopener noreferrer"
           >
-            Усі відгуки на Prom.ua ↗
+            Усі відгуки
           </a>
         </div>
       </section>
@@ -410,84 +425,82 @@
             <p class="summary-note">Вартість доставки оплачується окремо.</p>
           </div>
 
-          
-<form class="order-form" id="order-form" method="post">
-  <div class="form-field">
-    <label for="customer-name">Ім’я та прізвище *</label>
-    <input
-      id="customer-name"
-      name="name"
-      type="text"
-      autocomplete="name"
-      placeholder="Вкажи ім’я та прізвище"
-      required
-    />
-  </div>
+          <form class="order-form" id="order-form" method="post">
+            <div class="form-field">
+              <label for="customer-name">Ім’я та прізвище *</label>
+              <input
+                id="customer-name"
+                name="name"
+                type="text"
+                autocomplete="name"
+                placeholder="Вкажи ім’я та прізвище"
+                required
+              />
+            </div>
 
-  <div class="form-field">
-    <label for="customer-phone">Номер телефону *</label>
-    <input
-      id="customer-phone"
-      name="phone"
-      type="tel"
-      autocomplete="tel"
-      placeholder="+380"
-      required
-    />
-  </div>
+            <div class="form-field">
+              <label for="customer-phone">Номер телефону *</label>
+              <input
+                id="customer-phone"
+                name="phone"
+                type="tel"
+                autocomplete="tel"
+                placeholder="+380"
+                required
+              />
+            </div>
 
-  <div class="form-field">
-    <label for="customer-city">Місто або населений пункт</label>
-    <input
-      id="customer-city"
-      name="city"
-      type="text"
-      autocomplete="address-level2"
-      placeholder="Наприклад, Київ"
-    />
-  </div>
+            <div class="form-field">
+              <label for="customer-city">Місто або населений пункт</label>
+              <input
+                id="customer-city"
+                name="city"
+                type="text"
+                autocomplete="address-level2"
+                placeholder="Наприклад, Київ"
+              />
+            </div>
 
-  <div class="form-field">
-    <label for="delivery-type">Спосіб доставки</label>
-    <select id="delivery-type" name="delivery_type">
-      <option value="" selected>Обери спосіб доставки</option>
-      <option value="branch">Відділення Нової пошти</option>
-      <option value="courier">Кур’єрська доставка</option>
-      <option value="meest">Meest Пошта</option>
-      <option value="rozetka">Точка видачі ROZETKA</option>
-      <option value="ukrposhta">Укрпошта</option>
-    </select>
-  </div>
+            <div class="form-field">
+              <label for="delivery-type">Спосіб доставки</label>
+              <select id="delivery-type" name="delivery_type">
+                <option value="" selected>Обери спосіб доставки</option>
+                <option value="branch">Відділення Нової пошти</option>
+                <option value="courier">Кур’єрська доставка</option>
+                <option value="meest">Meest Пошта</option>
+                <option value="rozetka">Точка видачі ROZETKA</option>
+                <option value="ukrposhta">Укрпошта</option>
+              </select>
+            </div>
 
-  <div class="form-field">
-    <label for="delivery-address">
-      Номер відділення або адреса доставки
-    </label>
-    <input
-      id="delivery-address"
-      name="delivery_address"
-      type="text"
-      placeholder="Відділення № або вулиця, будинок, квартира"
-    />
-  </div>
+            <div class="form-field">
+              <label for="delivery-address">
+                Номер відділення або адреса доставки
+              </label>
+              <input
+                id="delivery-address"
+                name="delivery_address"
+                type="text"
+                placeholder="Відділення № або вулиця, будинок, квартира"
+              />
+            </div>
 
-  <div class="form-field">
-    <label for="customer-comment">Коментар до замовлення</label>
-    <textarea
-      id="customer-comment"
-      name="comment"
-      rows="3"
-      placeholder="За потреби залиш коментар"
-    ></textarea>
-  </div>
+            <div class="form-field">
+              <label for="customer-comment">Коментар до замовлення</label>
+              <textarea
+                id="customer-comment"
+                name="comment"
+                rows="3"
+                placeholder="За потреби залиш коментар"
+              ></textarea>
+            </div>
 
-  <button class="order-button" type="submit">
-    Підтвердити замовлення
-  </button>
+            <button class="order-button" type="submit">
+              Підтвердити замовлення
+            </button>
 
-  <p class="form-status" id="form-status" role="status"></p>
-</form>
-
+            <p class="form-status" id="form-status" role="status"></p>
+          </form>
         </div>
       </section>
     </main>
@@ -519,6 +532,14 @@
         </p>
       </div>
     </footer>
+    <button
+      id="scroll-to-top"
+      class="scroll-to-top"
+      type="button"
+      aria-label="Повернутися вгору"
+    >
+      ↑
+    </button>
     <script
       src="https://widgets.binotel.com/getcall/widgets/gvvag6pskbrlv3d4lhf2.js"
       async

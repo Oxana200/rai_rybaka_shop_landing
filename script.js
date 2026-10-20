@@ -334,3 +334,102 @@ extrasCheckboxes.forEach((checkbox) => {
 
 updateOrderTotal();
 
+
+const scrollTopButton = document.getElementById("scroll-to-top");
+
+if (scrollTopButton) {
+    const toggleScrollButton = () => {
+        scrollTopButton.classList.toggle("show", window.scrollY > 350);
+    };
+
+    window.addEventListener("scroll", toggleScrollButton, {
+        passive: true
+    });
+
+    toggleScrollButton();
+
+    scrollTopButton.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
+
+
+function updateCountdown() {
+    const now = new Date();
+
+    // Визначаємо найближчу північ
+    const midnight = new Date(now);
+    midnight.setHours(24, 0, 0, 0);
+
+    // Час, що залишився до 00:00
+    const remaining = midnight.getTime() - now.getTime();
+
+    const hours = Math.floor(remaining / 3600000);
+    const minutes = Math.floor((remaining % 3600000) / 60000);
+    const seconds = Math.floor((remaining % 60000) / 1000);
+
+    const format = (number) => String(number).padStart(2, "0");
+
+    document.getElementById("timer-hours").textContent = format(hours);
+    document.getElementById("timer-minutes").textContent = format(minutes);
+    document.getElementById("timer-seconds").textContent = format(seconds);
+}
+
+// Запускаємо таймер
+updateCountdown();
+
+// Оновлюємо щосекунди
+setInterval(updateCountdown, 1000);
+
+
+
+const burgerButton = document.getElementById("burger-button");
+const mobileNav = document.getElementById("mobile-nav");
+
+if (burgerButton && mobileNav) {
+    function setMenuOpen(isOpen) {
+        burgerButton.classList.toggle("active", isOpen);
+        mobileNav.classList.toggle("open", isOpen);
+
+        burgerButton.setAttribute(
+            "aria-expanded",
+            String(isOpen)
+        );
+
+        burgerButton.setAttribute(
+            "aria-label",
+            isOpen ? "Закрити меню" : "Відкрити меню"
+        );
+    }
+
+    burgerButton.addEventListener("click", () => {
+        const isOpen = burgerButton.classList.contains("active");
+        setMenuOpen(!isOpen);
+    });
+
+    // Закриваємо меню після вибору розділу
+    mobileNav.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            setMenuOpen(false);
+        });
+    });
+
+    // Закриваємо меню при натисканні Escape
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") {
+            setMenuOpen(false);
+        }
+    });
+
+    // Закриваємо при переході на комп'ютерну ширину
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            setMenuOpen(false);
+        }
+    });
+}
+
+
