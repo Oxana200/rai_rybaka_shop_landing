@@ -20,8 +20,6 @@
   <body>
     <header class="header">
       <div class="container">
-        <a class="logo" href="./index.html">Риболовний набір</a>
-
         <button
           class="burger-button"
           id="burger-button"
@@ -48,7 +46,6 @@
     <main>
       <section class="hero" aria-labelledby="product-title">
         <div class="container">
-          <p class="hero-label">Все для риболовлі в одному наборі</p>
           <h1 class="hero-title" id="product-title">Риболовний набір 16 в 1</h1>
 
           <img
@@ -161,6 +158,15 @@
             <li>Набір грузил — 1 шт.</li>
           </ul>
 
+          <div class="equipment-video">
+            <h3>🎥 Дивіться риболовний набір у дії</h3>
+
+            <video controls playsinline preload="metadata">
+              <source src="images/video.mp4" type="video/mp4" />
+              Ваш браузер не підтримує відтворення відео.
+            </video>
+          </div>
+
           <p class="equipment-note">
             <strong>Зверніть увагу!</strong>
             У наявності набори зі спінінгами довжиною від 2,1 до 4,5 м. Вартість
@@ -205,7 +211,6 @@
         </div>
       </section>
 
-      <!-- Відгуки покупців -->
       <section class="reviews" id="reviews" aria-labelledby="reviews-title">
         <div class="container">
           <h2 class="section-title" id="reviews-title">
@@ -328,7 +333,7 @@
                     type="checkbox"
                     name="extras"
                     value="net"
-                    data-price="300"
+                    data-price="255"
                     form="order-form"
                   />
                   Додати до замовлення
@@ -354,7 +359,7 @@
                     type="checkbox"
                     name="extras"
                     value="bait"
-                    data-price="150"
+                    data-price="65"
                     form="order-form"
                   />
                   Додати до замовлення
@@ -384,7 +389,10 @@
 
             <li>
               <h3>Отримай посилку</h3>
-              <p>Доставимо у відділення Нової пошти або кур’єром.</p>
+              <p>
+                Узгодимо доставку Новою поштою, Meest Поштою, Укрпоштою, ROZETKA
+                або кур’єром.
+              </p>
             </li>
           </ol>
 
@@ -434,6 +442,7 @@
                 type="text"
                 autocomplete="name"
                 placeholder="Вкажи ім’я та прізвище"
+                maxlength="200"
                 required
               />
             </div>
@@ -446,6 +455,8 @@
                 type="tel"
                 autocomplete="tel"
                 placeholder="+380"
+                maxlength="30"
+                inputmode="tel"
                 required
               />
             </div>
@@ -458,6 +469,7 @@
                 type="text"
                 autocomplete="address-level2"
                 placeholder="Наприклад, Київ"
+                maxlength="200"
               />
             </div>
 
@@ -482,6 +494,7 @@
                 name="delivery_address"
                 type="text"
                 placeholder="Відділення № або вулиця, будинок, квартира"
+                maxlength="200"
               />
             </div>
 
@@ -492,6 +505,7 @@
                 name="comment"
                 rows="3"
                 placeholder="За потреби залиш коментар"
+                maxlength="500"
               ></textarea>
             </div>
 
@@ -509,7 +523,7 @@
       <div class="container">
         <p>Рибальські набори та аксесуари</p>
 
-        <a href="tel:+380000000000">+380 (00) 000-00-00</a>
+        <a href="tel:+380956457572">+380 (95) 645-75-72</a>
 
         <p>
           <a
@@ -532,6 +546,47 @@
         </p>
       </div>
     </footer>
+
+    <div
+      class="photo-modal"
+      id="photo-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Перегляд фотографій"
+      aria-hidden="true"
+    >
+      <button
+        class="photo-modal-close"
+        id="photo-modal-close"
+        type="button"
+        aria-label="Закрити фото"
+      >
+        &times;
+      </button>
+
+      <button
+        class="photo-modal-prev"
+        id="photo-modal-prev"
+        type="button"
+        aria-label="Попереднє фото"
+      >
+        &#10094;
+      </button>
+
+      <img id="photo-modal-image" src="" alt="Фото товару" />
+
+      <button
+        class="photo-modal-next"
+        id="photo-modal-next"
+        type="button"
+        aria-label="Наступне фото"
+      >
+        &#10095;
+      </button>
+
+      <div class="photo-modal-counter" id="photo-modal-counter"></div>
+    </div>
+
     <button
       id="scroll-to-top"
       class="scroll-to-top"
@@ -540,6 +595,7 @@
     >
       ↑
     </button>
+
     <script
       src="https://widgets.binotel.com/getcall/widgets/gvvag6pskbrlv3d4lhf2.js"
       async

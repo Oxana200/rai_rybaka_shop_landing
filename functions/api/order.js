@@ -1,5 +1,3 @@
-
-
 const prices = {
     kit: 1510,
     net: 255,
@@ -14,23 +12,29 @@ const deliveryNames = {
     ukrposhta: "Укрпошта"
 };
 
-// Перевірка роботи API
 export function onRequestGet() {
     return Response.json(
         { status: "API працює" },
-        { headers: { "Cache-Control": "no-store" } }
+        {
+            headers: {
+                "Cache-Control": "no-store"
+            }
+        }
     );
 }
 
-// Приймання замовлення
 export async function onRequestPost({ request, env }) {
+
     const reply = (data, status = 200) =>
         Response.json(data, {
             status,
-            headers: { "Cache-Control": "no-store" }
+            headers: {
+                "Cache-Control": "no-store"
+            }
         });
 
     try {
+
         if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) {
             return reply({ error: "Server not configured" }, 500);
         }
@@ -41,7 +45,6 @@ export async function onRequestPost({ request, env }) {
             return reply({ error: "Invalid content type" }, 415);
         }
 
-        // Отримання даних замовлення
         const body = await request.text();
 
         if (body.length > 10000) {
@@ -70,7 +73,6 @@ export async function onRequestPost({ request, env }) {
         const comment = clean(order.comment, 500);
         const delivery = clean(order.delivery_type, 30);
 
-        // Обов'язкові тільки ім'я та телефон
         if (
             !name ||
             !/^\+?[0-9()\s-]{9,20}$/.test(phone)
@@ -78,12 +80,10 @@ export async function onRequestPost({ request, env }) {
             return reply({ error: "Invalid name or phone" }, 400);
         }
 
-        // Доставка необов'язкова, але значення перевіряємо
         if (delivery && !deliveryNames[delivery]) {
             return reply({ error: "Invalid delivery type" }, 400);
         }
 
-        // Перевірка додаткових товарів
         const selectedExtras = order.extras ?? [];
 
         if (
@@ -97,7 +97,6 @@ export async function onRequestPost({ request, env }) {
 
         const extras = [...new Set(selectedExtras)];
 
-        // Розрахунок вартості
         const total =
             prices.kit +
             extras.reduce(
@@ -105,7 +104,6 @@ export async function onRequestPost({ request, env }) {
                 0
             );
 
-        // Повідомлення для Telegram
         const message = [
             "🎣 НОВЕ ЗАМОВЛЕННЯ — РАЙ РИБАКА",
             "",
@@ -116,17 +114,18 @@ export async function onRequestPost({ request, env }) {
             `📦 Адреса / відділення: ${address || "Не вказано"}`,
             "",
             `🎣 Риболовний набір 16 в 1 — ${prices.kit} грн`,
+
             ...extras.map(item =>
                 item === "net"
                     ? `➕ Підсак — ${prices.net} грн`
                     : `➕ Прикормка — ${prices.bait} грн`
             ),
+
             "",
             `💰 РАЗОМ: ${total} грн`,
             comment ? `💬 Коментар: ${comment}` : ""
         ].filter(Boolean).join("\n");
 
-        // Telegram
         const token = String(env.TELEGRAM_BOT_TOKEN).trim();
         const chatId = String(env.TELEGRAM_CHAT_ID).trim();
 
@@ -154,7 +153,8 @@ export async function onRequestPost({ request, env }) {
         );
 
         if (!telegramResponse.ok) {
-            const errorData = await telegramResponse.json()
+            const errorData = await telegramResponse
+                .json()
                 .catch(() => ({}));
 
             console.error(
@@ -166,10 +166,17 @@ export async function onRequestPost({ request, env }) {
             return reply({ error: "Delivery failed" }, 502);
         }
 
-        return reply({ success: true, total });
+        return reply({
+            success: true,
+            total
+        });
 
     } catch (error) {
-        console.error("Order processing error:", error?.name);
+
+        console.error(
+            "Order processing error:",
+            error?.name
+        );
 
         return reply(
             { error: "Could not process order" },
