@@ -46,7 +46,9 @@
     <main>
       <section class="hero" aria-labelledby="product-title">
         <div class="container">
-          <h1 class="hero-title" id="product-title">Риболовний набір 16 в 1</h1>
+          <h1 class="hero-title" id="product-title">
+            Риболовний набір <span class="nowrap">16 в 1</span>
+          </h1>
 
           <img
             class="hero-image"
@@ -113,7 +115,7 @@
                 aria-controls="product-slides"
                 disabled
               >
-                Назад
+                &#10094;
               </button>
 
               <p class="carousel-counter" aria-live="polite">
@@ -129,7 +131,7 @@
                 aria-controls="product-slides"
                 disabled
               >
-                Далі
+                &#10095;
               </button>
             </div>
 
@@ -272,7 +274,7 @@
                 aria-label="Попередні відгуки"
                 aria-controls="reviews-list"
               >
-                ← Назад
+                &#10094;
               </button>
 
               <span class="reviews-counter" aria-live="polite">
@@ -287,7 +289,7 @@
                 aria-label="Наступні відгуки"
                 aria-controls="reviews-list"
               >
-                Далі →
+                &#10095;
               </button>
             </div>
           </div>
@@ -593,7 +595,19 @@
       type="button"
       aria-label="Повернутися вгору"
     >
-      ↑
+      <svg
+        width="26"
+        height="26"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="M12 19V5M5 12l7-7 7 7" />
+      </svg>
     </button>
 
     <script

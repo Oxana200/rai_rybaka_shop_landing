@@ -1,5 +1,3 @@
-/* Базові налаштування */
-
 *,
 *::before,
 *::after {
@@ -60,6 +58,11 @@ input[type="checkbox"] {
     display: none !important;
 }
 
+:focus-visible {
+    outline: 3px solid #c96a18;
+    outline-offset: 4px;
+}
+
 .container {
     width: 100%;
     max-width: 960px;
@@ -79,23 +82,26 @@ section {
     text-align: center;
 }
 
-:focus-visible {
-    outline: 3px solid #c96a18;
-    outline-offset: 4px;
+.nowrap {
+    white-space: nowrap;
 }
 
-/* Шапка */
 
+/* 2. Шапка та мобільне бургер-меню */
 .header {
-    padding: 16px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    padding: 12px 0;
     background-color: #ffffff;
     border-bottom: 1px solid #dce5de;
+    box-shadow: 0 2px 10px rgba(24, 61, 41, 0.08);
 }
 
 .header .container {
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     gap: 12px;
 }
 
@@ -106,25 +112,98 @@ section {
     text-decoration: none;
 }
 
+.burger-button {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    margin-left: auto;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #eaf1eb;
+    cursor: pointer;
+    z-index: 101;
+    transition: background-color 0.2s ease;
+}
+
+.burger-button:hover {
+    background-color: #dce9df;
+}
+
+.burger-button span {
+    width: 25px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: #245c3c;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.burger-button.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger-button.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-button.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.header-nav {
+    display: none;
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 16px;
+    right: 16px;
+    padding: 8px;
+    border: 1px solid #c5d8c9;
+    border-radius: 14px;
+    background-color: #dce9df;
+    box-shadow: 0 10px 28px rgba(24, 61, 41, 0.15);
+    z-index: 100;
+}
+
+.header-nav.open {
+    display: block;
+}
+
 .nav-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
+    flex-direction: column;
+    gap: 4px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    width: 100%;
 }
 
 .nav-list a {
-    font-size: 14px;
+    display: block;
+    padding: 14px 16px;
+    border-radius: 9px;
+    color: #183d29;
+    font-size: 15px;
+    font-weight: 600;
     text-decoration: none;
+    transition: background-color 0.2s ease;
 }
 
-.nav-list a:hover {
+.nav-list a:hover,
+.nav-list a:focus-visible {
+    background-color: #ffffff;
     color: #245c3c;
-    text-decoration: underline;
 }
 
-/* Головний блок */
 
+/* 3. Головний екран */
 .hero {
     text-align: center;
     background-color: #eaf1eb;
@@ -148,8 +227,13 @@ section {
     border-radius: 16px;
 }
 
-/* Ціни */
+.hero-note {
+    margin-top: 12px;
+    font-size: 14px;
+}
 
+
+/* 4. Ціни й таймер */
 .price {
     display: flex;
     flex-wrap: wrap;
@@ -172,8 +256,6 @@ section {
     font-weight: 700;
     color: #245c3c;
 }
-
-/* Таймер */
 
 .countdown {
     margin-bottom: 24px;
@@ -208,8 +290,8 @@ section {
     background-color: #245c3c;
 }
 
-/* Кнопки замовлення */
 
+/* 5. Кнопки замовлення */
 .order-button {
     display: block;
     width: 100%;
@@ -236,13 +318,8 @@ button:disabled {
     cursor: not-allowed;
 }
 
-.hero-note {
-    margin-top: 12px;
-    font-size: 14px;
-}
 
-/* Галерея */
-
+/* 6. Карусель фотографій */
 .gallery {
     background-color: #ffffff;
 }
@@ -254,58 +331,66 @@ button:disabled {
 
 .carousel-slide img {
     width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
     border-radius: 12px;
+    background-color: #ffffff;
 }
 
 .carousel-controls {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
-    margin-top: 16px;
+    gap: 16px;
+    margin-top: 18px;
 }
 
 .carousel-controls button {
-    min-height: 44px;
-    padding: 10px 16px;
-    border: 1px solid #cbd8ce;
-    border-radius: 8px;
-    color: #24332b;
-    background-color: #eaf1eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #245c3c;
+    color: #ffffff;
+    font-size: 23px;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.carousel-controls button:hover:not(:disabled) {
+    background-color: #183d29;
+    transform: scale(1.06);
 }
 
 .carousel-counter {
+    color: #183d29;
+    font-size: 16px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
-/* Переваги */
-
-.benefits .container>p {
-    margin-bottom: 20px;
+.carousel-caption {
+    margin-top: 12px;
     text-align: center;
+    font-weight: 700;
 }
 
-.benefits-list {
-    display: grid;
-    gap: 16px;
-}
 
-.benefits-item {
-    padding: 20px;
-    border: 1px solid #dce5de;
-    border-radius: 12px;
-    background-color: #ffffff;
-}
-
-.benefits-item h3 {
-    margin-bottom: 8px;
-    font-size: 20px;
-}
-
-/* Комплектація */
-
+/* 7. Комплектація, примітка та відео */
 .equipment {
     background-color: #ffffff;
+}
+
+.equipment-subtitle {
+    margin: 28px 0 12px;
+    font-size: 22px;
+    text-align: center;
 }
 
 .equipment-list {
@@ -318,18 +403,53 @@ button:disabled {
     border-bottom: 1px solid #dce5de;
 }
 
-/* Додаткові товари */
+.equipment-note {
+    max-width: 650px;
+    margin: 24px auto;
+    padding: 18px 20px;
+    border-left: 4px solid #245c3c;
+    border-radius: 8px;
+    background-color: #eaf1eb;
+    color: #24332b;
+    font-size: 15px;
+    line-height: 1.6;
+}
 
+.equipment-video {
+    max-width: 750px;
+    margin: 25px auto 15px;
+    text-align: center;
+}
+
+.equipment-video h3 {
+    margin-bottom: 18px;
+    font-size: 20px;
+    color: #174b32;
+}
+
+.equipment-video video {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    border-radius: 14px;
+    background: #000;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* 8. Переваги */
+.benefits .container>p,
 .extras .container>p {
     margin-bottom: 20px;
     text-align: center;
 }
 
-.extras-list {
+.benefits-list {
     display: grid;
-    gap: 20px;
+    gap: 16px;
 }
 
+.benefits-item,
 .extras-item {
     padding: 20px;
     border: 1px solid #dce5de;
@@ -337,214 +457,13 @@ button:disabled {
     background-color: #ffffff;
 }
 
-.extras-item img {
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto 16px;
-    border-radius: 8px;
-}
-
-.extras-item h3 {
+.benefits-item h3 {
     margin-bottom: 8px;
-}
-
-.extras-item p {
-    margin-bottom: 12px;
     font-size: 20px;
-    font-weight: 700;
-    color: #245c3c;
-}
-
-.extras-item label,
-.form-consent {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-input[type="checkbox"] {
-    flex-shrink: 0;
-    width: 20px;
-    height: 20px;
-    margin: 2px 0 0;
-    accent-color: #245c3c;
-}
-
-/* Доставка */
-
-.delivery {
-    background-color: #eaf1eb;
-}
-
-.delivery-list {
-    display: grid;
-    gap: 20px;
-    margin-bottom: 24px;
-    counter-reset: steps;
-}
-
-.delivery-list li {
-    padding: 20px;
-    border-radius: 12px;
-    background-color: #ffffff;
-    counter-increment: steps;
-}
-
-.delivery-list h3 {
-    margin-bottom: 8px;
-}
-
-.delivery-list h3::before {
-    content: counter(steps) ". ";
-    color: #245c3c;
-}
-
-.delivery .container>p+p {
-    margin-top: 8px;
-}
-
-/* Форма */
-
-.order {
-    background-color: #ffffff;
-}
-
-.order .container>p {
-    margin-bottom: 12px;
-    text-align: center;
-}
-
-.order-form {
-    display: grid;
-    gap: 16px;
-    max-width: 480px;
-    margin: 24px auto 0;
-}
-
-.form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.form-field label {
-    font-weight: 700;
-}
-
-.form-field input,
-.form-field select,
-.form-field textarea {
-    width: 100%;
-    min-height: 48px;
-    padding: 12px;
-    border: 1px solid #b9c9bd;
-    border-radius: 8px;
-    color: #24332b;
-    background-color: #ffffff;
-}
-
-.form-field textarea {
-    resize: vertical;
-}
-
-.form-consent {
-    flex-wrap: wrap;
-    font-size: 14px;
-}
-
-.order-form .order-button {
-    max-width: none;
-    margin-top: 8px;
-}
-
-.form-status:empty {
-    display: none;
-}
-
-/* Підвал */
-
-.footer {
-    padding: 28px 0;
-    text-align: center;
-    color: #ffffff;
-    background-color: #183d29;
-}
-
-.footer .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.footer .logo {
-    color: #ffffff;
-}
-
-/* Ширші екрани */
-
-@media (min-width: 768px) {
-    .container {
-        padding: 0 24px;
-    }
-
-    section {
-        padding: 56px 0;
-    }
-
-    .header .container {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-
-    .hero-title {
-        font-size: 44px;
-    }
-
-    .section-title {
-        font-size: 32px;
-    }
-
-    .benefits-list,
-    .delivery-list {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .extras-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-}
-
-.carousel-slide img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    background-color: #ffffff;
-}
-
-.carousel-caption {
-    margin-top: 12px;
-    text-align: center;
-    font-weight: 700;
-}
-
-.equipment-subtitle {
-    margin: 28px 0 12px;
-    font-size: 22px;
-    text-align: center;
 }
 
 
-
-
-/* Карусель відгуків */
-
+/* 9. Відгуки */
 .reviews {
     background-color: #f0f5f0;
 }
@@ -622,29 +541,46 @@ input[type="checkbox"] {
 .reviews-controls {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 12px;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 18px;
 }
 
 .reviews-controls button {
-    min-height: 44px;
-    padding: 10px 18px;
-    border: 1px solid #cbd8ce;
-    border-radius: 8px;
-    background-color: #ffffff;
-    color: #245c3c;
-    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background-color: #245c3c;
+    color: #ffffff;
+    font-size: 23px;
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .reviews-controls button:hover:not(:disabled) {
-    background-color: #e0ebe2;
+    background-color: #183d29;
+    transform: scale(1.06);
 }
 
 .reviews-counter {
     min-width: 42px;
     text-align: center;
+    color: #183d29;
+    font-size: 16px;
     font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.reviews-controls button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .reviews-link {
@@ -665,25 +601,93 @@ input[type="checkbox"] {
     background-color: #183d29;
 }
 
-@media (min-width: 650px) {
-    .review-card {
-        flex-basis: calc((100% - 16px) / 2);
-    }
+
+/* 10. Додаткові товари */
+.extras-list {
+    display: grid;
+    gap: 20px;
 }
 
-@media (min-width: 1000px) {
-    .review-card {
-        flex-basis: calc((100% - 32px) / 3);
-    }
+.extras-item img {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 16px;
+    border-radius: 8px;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .reviews-list {
-        scroll-behavior: auto;
-    }
+.extras-item h3 {
+    margin-bottom: 8px;
 }
 
-/* Підсумок замовлення */
+.extras-item p {
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #245c3c;
+}
+
+.extras-item label,
+.form-consent {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 2px 0 0;
+    accent-color: #245c3c;
+}
+
+
+/* 11. Доставка */
+.delivery {
+    background-color: #eaf1eb;
+}
+
+.delivery-list {
+    display: grid;
+    gap: 20px;
+    margin-bottom: 24px;
+    counter-reset: steps;
+}
+
+.delivery-list li {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #ffffff;
+    counter-increment: steps;
+}
+
+.delivery-list h3 {
+    margin-bottom: 8px;
+}
+
+.delivery-list h3::before {
+    content: counter(steps) ". ";
+    color: #245c3c;
+}
+
+.delivery .container>p+p {
+    margin-top: 8px;
+}
+
+
+/* 12. Замовлення, підсумок та форма */
+.order {
+    background-color: #ffffff;
+}
+
+.order .container>p {
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+.order .section-title {
+    text-align: center;
+}
 
 .order-summary {
     max-width: 480px;
@@ -728,32 +732,89 @@ input[type="checkbox"] {
     color: #68766d;
 }
 
-/* Примітка про довжину спінінгів */
-
-.equipment-note {
-    max-width: 650px;
-    margin: 24px auto;
-    padding: 18px 20px;
-    border-left: 4px solid #245c3c;
-    border-radius: 8px;
-    background-color: #eaf1eb;
-    color: #24332b;
-    font-size: 15px;
-    line-height: 1.6;
+.order-form {
+    display: grid;
+    gap: 16px;
+    max-width: 480px;
+    margin: 24px auto 0;
 }
 
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field label {
+    font-weight: 700;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px;
+    border: 1px solid #b9c9bd;
+    border-radius: 8px;
+    color: #24332b;
+    background-color: #ffffff;
+}
+
+.form-field textarea {
+    resize: vertical;
+}
+
+.form-consent {
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.order-form .order-button {
+    max-width: none;
+    margin-top: 8px;
+}
+
+.form-status:empty {
+    display: none;
+}
+
+
+/* 13. Підвал */
+.footer {
+    padding: 28px 0;
+    text-align: center;
+    color: #ffffff;
+    background-color: #183d29;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer .logo {
+    color: #ffffff;
+}
+
+.footer a {
+    text-decoration: none;
+}
+
+
+/* 14. Кнопка повернення вгору: мобільний вигляд */
 .scroll-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 48px;
-    height: 48px;
+    padding: 0;
     border: none;
     border-radius: 50%;
     background: #237a43;
     color: white;
-    font-size: 28px;
-    font-weight: bold;
     cursor: pointer;
     z-index: 9999;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -761,6 +822,20 @@ input[type="checkbox"] {
     visibility: hidden;
     transform: translateY(12px);
     transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+}
+
+.scroll-to-top svg {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+}
+
+#bingc-phone-button {
+    position: fixed !important;
+    bottom: 16px !important;
+    right: 16px !important;
+    transform: scale(0.7) !important;
+    transform-origin: bottom right !important;
 }
 
 .scroll-to-top.show {
@@ -773,161 +848,17 @@ input[type="checkbox"] {
     background: #195c32;
 }
 
-@media (max-width: 600px) {
-    .scroll-to-top {
-        bottom: 20px;
-        right: 15px;
-        width: 44px;
-        height: 44px;
-    }
-}
 
-/* Бургер-меню */
-.burger-button {
-    display: none;
-    width: 44px;
-    height: 44px;
-    padding: 10px;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 5px;
-    z-index: 1001;
-}
-
-.burger-button span {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background: #237a43;
-    border-radius: 3px;
-    transition: transform 0.3s, opacity 0.3s;
-}
-
-@media (max-width: 768px) {
-    .header .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-    }
-
-    .burger-button {
-        display: flex;
-    }
-
-    .header-nav {
-        display: none;
-        width: 100%;
-        order: 3;
-    }
-
-    .header-nav.open {
-        display: block;
-    }
-
-    .header-nav .nav-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        padding: 10px 0;
-        margin: 0;
-    }
-
-    .header-nav .nav-list li {
-        width: 100%;
-        list-style: none;
-    }
-
-    .header-nav .nav-list a {
-        display: block;
-        padding: 14px 10px;
-        text-decoration: none;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    /* Анімація кнопки в хрестик */
-    .burger-button.active span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .burger-button.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .burger-button.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-}
-
-@media (max-width: 768px) {
-    .header .container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-    }
-
-    .header .logo {
-        margin-right: auto;
-    }
-
-    .burger-button {
-        display: flex;
-        margin-left: auto;
-        flex-shrink: 0;
-        position: relative;
-        right: 0;
-    }
-}
-
-@media (max-width: 768px) {
-    .header .container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: nowrap;
-    }
-
-    .header .logo {
-        margin: 0;
-    }
-
-    .burger-button {
-        display: flex;
-        margin-left: auto;
-        flex-shrink: 0;
-    }
-
-    .header-nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: white;
-        z-index: 1000;
-    }
-
-    .header {
-        position: relative;
-    }
-}
-
-
-/* Фото на весь екран */
+/* 15. Повноекранний перегляд фото: мобільний вигляд */
 .photo-modal {
     display: none;
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: rgba(0, 0, 0, 0.9);
+    padding: 20px;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    background: rgba(0, 0, 0, 0.9);
 }
 
 .photo-modal.open {
@@ -935,8 +866,8 @@ input[type="checkbox"] {
 }
 
 .photo-modal img {
-    max-width: 95%;
-    max-height: 90vh;
+    max-width: calc(100% - 65px);
+    max-height: 85vh;
     object-fit: contain;
     border-radius: 8px;
 }
@@ -945,15 +876,14 @@ input[type="checkbox"] {
     position: absolute;
     top: 15px;
     right: 20px;
+    z-index: 10001;
     color: white;
     background: transparent;
     border: none;
     font-size: 40px;
     cursor: pointer;
-    z-index: 10001;
 }
 
-/* Підказка, що фото можна відкрити */
 .gallery img {
     cursor: zoom-in;
 }
@@ -964,22 +894,22 @@ input[type="checkbox"] {
     top: 50%;
     transform: translateY(-50%);
     z-index: 10001;
-    width: 44px;
-    height: 50px;
+    width: 34px;
+    height: 44px;
     border: none;
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.18);
     color: white;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
 }
 
 .photo-modal-prev {
-    left: 12px;
+    left: 4px;
 }
 
 .photo-modal-next {
-    right: 12px;
+    right: 4px;
 }
 
 .photo-modal-prev:hover,
@@ -996,62 +926,161 @@ input[type="checkbox"] {
     font-size: 15px;
 }
 
-.photo-modal img {
-    max-width: calc(100% - 90px);
-    max-height: 85vh;
-    object-fit: contain;
-}
 
-@media (max-width: 600px) {
-
-    .photo-modal-prev,
-    .photo-modal-next {
-        width: 34px;
-        height: 44px;
-        font-size: 24px;
-    }
-
-    .photo-modal-prev {
-        left: 4px;
-    }
-
-    .photo-modal-next {
-        right: 4px;
+/* Від 601 px: розміри плаваючих кнопок і відео */
+@media (min-width: 601px) {
+    .scroll-to-top {
+        bottom: 25px;
+        right: 25px;
+        width: 48px;
+        height: 48px;
     }
 
     .photo-modal img {
-        max-width: calc(100% - 65px);
+        max-width: calc(100% - 90px);
     }
-}
 
-/* Відео після комплектації */
-.equipment-video {
-    max-width: 750px;
-    margin: 35px auto 20px;
-    text-align: center;
-}
+    .photo-modal-prev,
+    .photo-modal-next {
+        width: 44px;
+        height: 50px;
+        font-size: 30px;
+    }
 
-.equipment-video h3 {
-    margin-bottom: 18px;
-    font-size: 24px;
-    color: #174b32;
-}
+    .photo-modal-prev {
+        left: 12px;
+    }
 
-.equipment-video video {
-    display: block;
-    width: 100%;
-    max-height: 520px;
-    border-radius: 14px;
-    background: #000;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
+    .photo-modal-next {
+        right: 12px;
+    }
 
-@media (max-width: 600px) {
     .equipment-video {
-        margin: 25px 0 15px;
+        margin: 35px auto 20px;
     }
 
     .equipment-video h3 {
-        font-size: 20px;
+        font-size: 24px;
     }
+}
+
+/* Від 650 px: по два відгуки */
+@media (min-width: 650px) {
+    .review-card {
+        flex-basis: calc((100% - 16px) / 2);
+    }
+}
+
+/* Від 768 px: простір і сітки секцій (як у вихідному CSS) */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 24px;
+    }
+
+    section {
+        padding: 56px 0;
+    }
+
+    .hero-title {
+        font-size: 44px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .benefits-list,
+    .delivery-list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .extras-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 769px) {
+    .burger-button {
+        display: none;
+    }
+
+    .header {
+        padding: 24px 0;
+    }
+
+    .header-nav,
+    .header-nav.open {
+        display: block;
+        position: static;
+        width: auto;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .nav-list li {
+        width: auto;
+    }
+
+    .nav-list a {
+        padding: 8px 12px;
+    }
+
+    .header-nav,
+    .header-nav.open {
+        display: block;
+        position: static;
+        width: auto;
+        background: transparent;
+    }
+
+    .nav-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        padding: 0;
+    }
+
+    .header-nav .nav-list li {
+        width: auto;
+    }
+
+    .nav-list a {
+        display: inline;
+        padding: 0;
+        border-bottom: none;
+    }
+}
+
+/* Від 1000 px: по три відгуки */
+@media (min-width: 1000px) {
+    .review-card {
+        flex-basis: calc((100% - 32px) / 3);
+    }
+}
+
+/* 17. Користувачі, які вимкнули анімації */
+@media (prefers-reduced-motion: reduce) {
+
+    html,
+    .reviews-list {
+        scroll-behavior: auto;
+    }
+}
+
+/* Зелена кнопка */
+.scroll-to-top {
+    bottom: 20px;
+    right: 92px;
+    width: 56px;
+    height: 56px;
 }
