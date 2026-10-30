@@ -372,6 +372,30 @@ extrasCheckboxes.forEach((checkbox) => {
     checkbox.addEventListener("change", updateOrderTotal);
 });
 updateOrderTotal();
+// АВТОМАТИЧНИЙ ПРЕФІКС +380 ДЛЯ ТЕЛЕФОНУ
+const phoneInput = document.getElementById("customer-phone");
+
+if (phoneInput) {
+    const prefix = "+380";
+
+    phoneInput.value = prefix;
+
+    phoneInput.addEventListener("input", () => {
+        let digits = phoneInput.value.replace(/\D/g, "");
+
+        if (digits.startsWith("380")) {
+            digits = digits.slice(3);
+        }
+
+        phoneInput.value = prefix + digits.slice(0, 9);
+    });
+
+    phoneInput.addEventListener("focus", () => {
+        if (phoneInput.value === prefix) {
+            phoneInput.setSelectionRange(4, 4);
+        }
+    });
+}
 
 // НАДСИЛАННЯ ЗАМОВЛЕННЯ В TELEGRAM 
 const WORKER_URL = "/api/order";
