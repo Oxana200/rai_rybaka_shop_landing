@@ -150,7 +150,7 @@
             <li>Прикормка для риби, 1 кг — 1 шт.</li>
             <li>Снасть для риболовлі «Карась» — 1 шт.</li>
             <li>Снасть для риболовлі «Короп з відводами» — 1 шт.</li>
-            <li>Бубонець із прищіпкою — 2 шт.</li>
+            <li>Сигналізатор Бубонець — 2 шт.</li>
             <li>Пінопластова наживка «Пуфік» — 2 шт.</li>
             <li>Набір «Свердло, шило, протяжка» — 1 шт.</li>
             <li>Набір рибальських поплавків — 1 шт.</li>
@@ -456,13 +456,13 @@
                 name="phone"
                 type="tel"
                 autocomplete="tel"
-                placeholder="+380"
-                maxlength="30"
-                inputmode="tel"
+                placeholder="+380XXXXXXXXX"
+                pattern="\+380[0-9]{9}"
+                title="Введіть номер у форматі +380XXXXXXXXX"
+                maxlength="13"
                 required
               />
             </div>
-
             <div class="form-field">
               <label for="customer-city">Місто або населений пункт</label>
               <input

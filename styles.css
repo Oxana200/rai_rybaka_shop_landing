@@ -89,8 +89,10 @@ section {
 
 /* 2. Шапка та мобільне бургер-меню */
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 999;
     padding: 12px 0;
     background-color: #ffffff;
@@ -205,6 +207,7 @@ section {
 
 /* 3. Головний екран */
 .hero {
+    padding: 110пшеpx;
     text-align: center;
     background-color: #eaf1eb;
 }
@@ -349,8 +352,8 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
     padding: 0;
     border: none;
     border-radius: 50%;
@@ -550,8 +553,8 @@ button:disabled {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 46px;
-    height: 46px;
+    width: 56px;
+    height: 56px;
     flex-shrink: 0;
     padding: 0;
     border: none;
